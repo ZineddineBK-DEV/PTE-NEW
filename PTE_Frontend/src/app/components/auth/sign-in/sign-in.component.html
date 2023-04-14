@@ -1,0 +1,35 @@
+<section class="vh-100" style="background-color:rgba(246, 232, 217, 0.4) ">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <h3 class="title1">Sign in</h3>
+                <hr>
+                <br>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-outline mb-4">
+                <input type="email" formControlName="email" required placeholder="Email" class="form-control form-control-lg label" />
+                
+              </div>
+  
+              <div class="form-outline mb-4">
+                <input type="password" placeholder="Password" formControlName="password" class="form-control form-control-lg label" />
+              </div>
+              
+              <!-- Checkbox -->
+              <p class="small mb-5 pb-lg-2"><a class="label" routerLink="/forgetPassword">Forgot password?</a></p>
+  
+              <button class="btnSubmit btn-block" type="submit">Login</button>
+            </form>
+            </div>
+            <div class="text-center text">
+                <p>You don't have an account? <a routerLink="/signup">Sign up</a></p>
+                
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

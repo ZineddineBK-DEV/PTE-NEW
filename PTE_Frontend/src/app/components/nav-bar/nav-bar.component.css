@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+mat-toolbar{
+    background-color: #282d32;
+    border-bottom: 1px solid #EB6440;
+    position: fixed;
+    height: 13%;
+}
+.innerSlogan{
+    background-color: #EB6440;
+    padding: 0px 5px 0px 5px;
+    font-size: xx-large;
+}
+.slogan{
+    font-family: "Montserrat", sans-serif;
+    color:#D6E4E5;
+    font-weight: bolder;
+    margin-left: 3%;
+    font-size: x-large;
+}
+.slogan:hover{
+    box-shadow: #EB6440;
+}
+.logo{
+    border: 0.5px solid #EB6440;
+    position: relative;
+    padding: 5px;
+    background-color: #EB6440;
+}
+
+.avatarMenu{
+    padding: 5px;
+    border-radius: 60px;
+    background-color: #282d32;
+    border: 0.5px solid #D6E4E5;
+   
+}
+.avatarMenu:hover {
+    background-color: #EB6440;
+    box-shadow: 0px 11px 22px 0px #EB6440;
+}
+
+.avatarImg{
+    width:30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.avatarSpan{
+    margin: 10px;
+    color: whitesmoke;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200;
+    font-size: smaller;
+
+}
+
+.menuContent{
+    width: 250px;
+    border-radius: 20px;
+  
+}
+.menuContent:hover{
+    border:0.5px solid #EB6440;
+    background-color: #282d32;
+    color : #EB6440
+}
+.notifMenu{
+    background-color:#282d32 ;
+    color: #D6E4E5;
+    
+}
+
+.notifButton{
+    background-color: #282d32;
+    margin-right: 10px;
+    border: none;
+}
+.notifMenu:hover{
+    color: #EB6440;
+
+}

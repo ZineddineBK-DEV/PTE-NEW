@@ -1,0 +1,32 @@
+.title1{
+    margin-top: 0%;
+    font-family: "Monserrat" sans-serif;
+    font-weight: bolder;
+    color: #EB6440;
+    /* text-shadow:0px 10px 7px #e57759; */
+    text-align: center;
+    font-size: xx-large;
+}
+.label{
+    color:hsl(217, 10%, 50.8%) ;
+    font-family: "Montserrat", sans-serif;
+    font-size: small;
+}
+hr{
+    padding-bottom: 3%;
+}
+.btnSubmit{
+    color: #e57759;
+    background-color: rgba(246, 232, 217, 0.4);
+    border: 0.5px solid #EB6440;
+    border-radius: 15px;
+    height: 40px;
+}
+.btnSubmit:hover{
+    background-color: #e57759;
+    color: whitesmoke;
+}
+.text{
+    color: hsl(217, 10%, 50.8%);
+    padding: 7%;
+}

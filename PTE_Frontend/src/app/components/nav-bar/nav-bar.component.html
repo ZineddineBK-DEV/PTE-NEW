@@ -1,0 +1,27 @@
+<mat-toolbar>
+    <span class="logo"> logo here</span>
+    <span class="slogan"><span class="innerSlogan">P</span>rologic<span class="innerSlogan">T</span>echnical<span
+            class="innerSlogan">E</span>xperience</span>
+    <span class="example-spacer"></span>
+    
+    <button class="notifButton" [matMenuTriggerFor]="menuNotif">
+        <mat-icon class="notifMenu">
+            notifications
+        </mat-icon>
+    </button>
+        <mat-menu #menuNotif="matMenu">
+            <span> Nothing yet</span>
+        </mat-menu>
+
+    <button class="avatarMenu" mat-button [matMenuTriggerFor]="menu">
+        <img class="avatarImg" src="https://img.freepik.com/free-psd/3d-illustration-person-with-long-hair_23-2149436197.jpg?w=740&t=st=1679993423~exp=1679994023~hmac=75c03bb00e61ccf9d915c65c4e47d7961ac67595b34c519c7427b835a1d134b0" alt="" />
+        <span class="avatarSpan">Zineddine Boubaker</span>
+    </button>
+    <mat-menu class="avatarMenu" #menu="matMenu">
+        <button class="menuContent" mat-menu-item>Profile</button>
+        <button class="menuContent" mat-menu-item>Personal infos</button>
+        <button class="menuContent" mat-menu-item>Settings</button>
+    </mat-menu>
+
+   
+</mat-toolbar>

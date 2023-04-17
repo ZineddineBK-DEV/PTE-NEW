@@ -6,8 +6,8 @@
 mat-toolbar{
     background-color: #282d32;
     border-bottom: 1px solid #EB6440;
-    position: fixed;
-    height: 13%;
+    
+    height: 70px;
 }
 .innerSlogan{
     background-color: #EB6440;

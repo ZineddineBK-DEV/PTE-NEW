@@ -15,7 +15,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatTreeModule} from '@angular/material/tree'; 
+import {MatTreeModule} from '@angular/material/tree';
+import { RegisterRequestComponent } from './components/register-request/register-request.component';
+import { EmployeesListComponent } from './components/employees-list/employees-list.component';
+import { ExternalEmployeesListComponent } from './components/external-employees-list/external-employees-list.component';
+import { ActionPlanComponent } from './components/action-plan/action-plan.component';
+import { EnvironementLabsComponent } from './components/environement-labs/environement-labs.component';
+import { VehiclesComponent } from './components/vehicles/vehicles.component';
+import { ConferenceRommsComponent } from './components/conference-romms/conference-romms.component';
+import { TechnicalTeamComponent } from './components/technical-team/technical-team.component';
+import { TeamorganizationalChartComponent } from './components/teamorganizational-chart/teamorganizational-chart.component'; 
 
 @NgModule({
   declarations: [
@@ -25,7 +34,16 @@ import {MatTreeModule} from '@angular/material/tree';
     HeaderComponent,
     FooterComponent,
     SideBarComponent,
-    NavBarComponent
+    NavBarComponent,
+    RegisterRequestComponent,
+    EmployeesListComponent,
+    ExternalEmployeesListComponent,
+    ActionPlanComponent,
+    EnvironementLabsComponent,
+    VehiclesComponent,
+    ConferenceRommsComponent,
+    TechnicalTeamComponent,
+    TeamorganizationalChartComponent
   ],
   imports: [
     BrowserModule,

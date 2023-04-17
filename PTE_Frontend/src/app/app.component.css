@@ -1,0 +1,13 @@
+.column {
+    padding: 10px;
+  }
+.right {
+    width: 75%;
+  }
+.sideBar{
+    width: 25%;
+    display: inline-block;
+    background-color: #282d32;
+    margin-bottom: 0%;
+    position: -webkit-sticky;
+}

@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<header>
+    <app-nav-bar></app-nav-bar>
+</header>
+
+<div class="row" >
+    <div class="sideBar">
+       <app-side-bar></app-side-bar>
+    </div>
+    <div class="column right" style="background-color: yellow;">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<footer >
+    <app-footer></app-footer>
+</footer>

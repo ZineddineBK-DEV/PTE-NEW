@@ -1,5 +1,16 @@
 <mat-drawer class="sideBar" mode="side" opened>
     <h5><b>Menu</b></h5>
-        <button mat-flat-button class="sideBarButton"> Validation requests </button>
-        <button mat-flat-button class="sideBarButton"> Validation requests </button>
+    <h6>> User management</h6>
+    <a routerLink="/registerRequest"> <button mat-flat-button class="sideBarButton"> Register requests</button> </a>
+    <a routerLink="/employeesList"><button mat-flat-button class="sideBarButton"> Employees List</button></a>
+    <a routerLink="/externalEmployeesList"><button mat-flat-button class="sideBarButton"> External Employees </button></a>
+    <a routerLink="/actionPlan"><button mat-flat-button class="sideBarButton"> Action Plan </button></a>
+    <h6>> Resources Booking</h6>
+    <a routerLink="/environementLabs"><button mat-flat-button class="sideBarButton"> Environement Labs </button></a>
+    <a routerLink="/vehicle"><button mat-flat-button class="sideBarButton"> Vehicles </button></a>
+    <a routerLink="/conferenceRoom"><button mat-flat-button class="sideBarButton"> Conference Rooms </button></a>
+    <a routerLink="/technicalTeam"><button mat-flat-button class="sideBarButton"> Technical Team </button></a>
+    <h6>> Team</h6>
+    <a routerLink="/teamOrganizationalChart"><button mat-flat-button class="sideBarButton"> organizational chart </button></a>
+     
     </mat-drawer>

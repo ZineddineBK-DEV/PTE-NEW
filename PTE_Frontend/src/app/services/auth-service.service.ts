@@ -8,9 +8,11 @@ import { User } from 'src/model/user';
   providedIn: 'root'
 })
 export class AuthServiceService {
+  private api:string ="http://localhost:3001/api/users/"
   private token? :string;
   private isAuthenticated? : boolean;
   private userID! :string
+  private userRole!:string
   private user!: User;
  // private user :User;
 
@@ -27,6 +29,11 @@ export class AuthServiceService {
     }
   getToken() { return this.token; }
   getUserId() { return this.userID; }
+  getRole(){ 
+    this.http.get(this.api+localStorage.getItem("userId")).subscribe(response => {
+        console.log(response)
+    })
+  }
 
   signup(form:FormGroup){
     let success;
@@ -73,9 +80,6 @@ export class AuthServiceService {
         const now = new Date();
         const expirationDate = new Date(now.getTime() + response.expiresIn * 1000);
         this.saveAuthData(this.token,expirationDate)
-        // this.http.get<{user:User}>(`http://localhost:3000/api/users/${this.userID}`).subscribe(responce => {
-        //   this.user=responce.user;
-        // })
         this.router.navigate(["/"]);
       }
 
@@ -84,11 +88,10 @@ export class AuthServiceService {
   }
   
   logout(){
-    this.token="";
     this.isAuthenticated=false;
     this.clearAuthData();
 
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/signin"]);
   }
 
   setAuthTimer(expiresIn:number){
@@ -118,6 +121,9 @@ export class AuthServiceService {
     this.userID!=localStorage.getItem("userId")
     if(!token || !expirationDate) return null;
     return {token:token,expirationDate:new Date(expirationDate)}
+  }
+  getUser(){
+    return this.http.get<{user:User}>(this.api+ this.userID);
   }
 
 

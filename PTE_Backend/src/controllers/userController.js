@@ -350,7 +350,6 @@ module.exports.getAllUsers = async function (req, res) {
   User.find({
     $and: [
       { isEnabled: true },
-      { _id: { $ne: req.user._id } },
       { roles: { $ne: "admin" } },
     ],
   })

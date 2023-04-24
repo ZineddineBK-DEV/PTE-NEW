@@ -10,8 +10,8 @@ mat-toolbar{
     height: 70px;
 }
 .innerSlogan{
-    background-color: #EB6440;
-    padding: 0px 5px 0px 5px;
+    color: #EB6440;
+    padding-left: 5px;
     font-size: xx-large;
 }
 .slogan{

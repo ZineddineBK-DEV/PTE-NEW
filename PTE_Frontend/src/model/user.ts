@@ -20,7 +20,7 @@ export class User{
         public experience:number,
         public hiringDate:Date,
         public title:string,
-        public role:string,
+        public roles:string,
         public cv:Cv,
         public career:Career
         ){}

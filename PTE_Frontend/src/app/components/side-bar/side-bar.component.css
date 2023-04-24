@@ -28,12 +28,13 @@ h5{
     font-size: x-large;
     text-align :center;
     font-family: 'Montserrat', sans-serif;    
-    color: #EB6440;
+    color: rgb(243, 159, 159);
 }
 h6{
     font-family: 'Montserrat', sans-serif;    
-    color: #fc4e1e;
-    padding: 5%;
+    color: rgb(245, 212, 212);
+    padding: 5px; 
+    margin-left: 20px;
 }
 a{
     color: whitesmoke;

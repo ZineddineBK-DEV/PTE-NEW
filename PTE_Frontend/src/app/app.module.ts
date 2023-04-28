@@ -25,7 +25,6 @@ import { VehiclesComponent } from './components/vehicles/vehicles.component';
 import { ConferenceRommsComponent } from './components/conference-romms/conference-romms.component';
 import { TechnicalTeamComponent } from './components/technical-team/technical-team.component';
 import { TeamorganizationalChartComponent } from './components/teamorganizational-chart/teamorganizational-chart.component'; 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +56,7 @@ import { TeamorganizationalChartComponent } from './components/teamorganizationa
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
-    MatTreeModule
+    MatTreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

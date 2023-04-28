@@ -13,6 +13,7 @@ export class RegisterRequestComponent implements OnInit{
   users!: User[];
   employeesCount!:number
   user!:User;
+  searchText: any
   constructor(private userService: UserServiceService,
     private authService: AuthServiceService,
     private router:Router) { }

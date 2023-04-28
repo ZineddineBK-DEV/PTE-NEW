@@ -11,15 +11,10 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="input-group">
-                <div class="form-outline">
-                  <input id="search-input" type="search" id="form1" class="form-control" />
-                  <label class="form-label" for="form1">Search</label>
-                </div>
-                <button id="search-button" type="button" class="btn btn-primary">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
+                <div>
+                    <div class="search-hero">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for an employee by name or department">
+                      </div>
                 <div class="table-responsive">
                     <table class="table project-list-table table-nowrap align-middle table-borderless">
                         <thead>
@@ -32,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let user of users">
+                            <tr *ngFor="let user of users ">
                                 <td><img src={{user.image}} alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{user.fullName}}</a></td>
                                 <td><span class="badge badge-soft-success mb-0">{{user.roles}}</span></td>
                                 <td>{{user.email}}</td>

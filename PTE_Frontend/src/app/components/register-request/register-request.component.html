@@ -20,8 +20,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Position</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Position</th>
                                 <th scope="col">Department</th>
                                 <th scope="col" style="width: 200px;">Action</th>
                             </tr>
@@ -29,8 +29,8 @@
                         <tbody>
                             <tr *ngFor="let user of users ">
                                 <td><img src={{user.image}} alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{user.fullName}}</a></td>
-                                <td><span class="badge badge-soft-success mb-0">{{user.roles}}</span></td>
                                 <td>{{user.email}}</td>
+                                <td><span class="badge badge-soft-primary mb-0">{{user.roles}}</span></td>
                                 <td>{{user.department}}</td>
                                 <td>
                                     <ul class="list-inline mb-0">

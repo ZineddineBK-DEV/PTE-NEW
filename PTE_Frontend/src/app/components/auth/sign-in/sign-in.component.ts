@@ -18,9 +18,9 @@ export class SignInComponent implements OnInit {
 
   constructor(private authService:AuthServiceService,private router:Router) { }
   ngOnInit() {}
-  onSubmit(){
 
-    const token=this.authService.login(this.loginForm.value.email!, this.loginForm.value.password!);
+  onSubmit(){
+    const token= this.authService.login(this.loginForm.value.email!, this.loginForm.value.password!);
     if(token){
       this.loginFailed=false;
       this.router.navigate(['']);

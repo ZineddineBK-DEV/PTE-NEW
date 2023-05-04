@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit{
   onSubmit(){
       console.log(this.registerForm)
       this.authService.signup(this.registerForm)
-      this.router.navigate(['/login'])
+      this.router.navigate(['/signin'])
   }
 
 }

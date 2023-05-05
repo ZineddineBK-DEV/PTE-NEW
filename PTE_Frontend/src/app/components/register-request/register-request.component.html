@@ -28,17 +28,17 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let user of users ">
-                                <td><img src={{user.image}} alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{user.fullName}}</a></td>
+                                <td><img src={{imagesURL+user.image}} alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{user.fullName}}</a></td>
                                 <td>{{user.email}}</td>
                                 <td><span class="badge badge-soft-primary mb-0">{{user.roles}}</span></td>
                                 <td>{{user.department}}</td>
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Approve" class="px-2 text-primary"><i class='bx bx-user-check bx-sm'></i></a>
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Approve" class="px-2 text-primary"><i (click)="confirmRequest(user._id)" class='bx bx-user-check bx-sm'></i></a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Decline" class="px-2 text-danger"><i class='bx bx-trash bx-sm'></i></a>
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Decline" class="px-2 text-danger"><i (click)="declineRequest(user._id)" class='bx bx-trash bx-sm'></i></a>
                                         </li>
                                     </ul>
                                 </td>

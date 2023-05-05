@@ -22,6 +22,16 @@ export class UserServiceService{
       catchError(throwError)
     );
   }
+  confirmUserRequest(userID: string):Observable<any>{
+    return this.http.post(this.api + "confirm-signup/"+userID,{}).pipe(
+      catchError(throwError)
+    );
+  }
+  declineUserRequest(userID: string):Observable<any>{
+    return this.http.delete(this.api + "delete/"+userID).pipe(
+      catchError(throwError)
+    );
+  }
   getExternalEmployees(): Observable<any>{
     return this.http.get(this.api + "sousTraitant").pipe(
       catchError(throwError)

@@ -10,6 +10,7 @@ import { User } from 'src/model/user';
   styleUrls: ['./external-employees-list.component.css']
 })
 export class ExternalEmployeesListComponent {
+  imagesURL:string="http://localhost:3001/images/"
   users!: User[];
   employeesCount!:number
   user!:User;

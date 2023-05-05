@@ -14,8 +14,7 @@ export class AuthServiceService {
   private userID! :string
   private userRole!:string
   private user!: User;
- // private user :User;
-
+  
 
   constructor(private http:HttpClient, private router:Router ) { }
   ngOnInit(){}
@@ -28,10 +27,11 @@ export class AuthServiceService {
     return false;
     }
   getToken() { return this.token; }
-  getUserId() { return this.userID; }
+  getUserId() { return this.userID }
   getRole(){ 
     this.http.get(this.api+localStorage.getItem("userId")).subscribe(response => {
-        console.log(response)
+      this.user = response as User;
+      this.userRole=this.user.roles[0]
     })
   }
 
@@ -76,12 +76,13 @@ export class AuthServiceService {
         this.setAuthTimer(response.expiresIn)
         this.isAuthenticated=true;
         this.userID=response.id;
-        //console.log(this.userID);
         const now = new Date();
         const expirationDate = new Date(now.getTime() + response.expiresIn * 1000);
         this.saveAuthData(this.token,expirationDate)
         this.router.navigate(["/"]);
       }
+      console.log(this.userID);
+      console.log(this.token);
 
     })
     return this.token;
@@ -103,10 +104,9 @@ export class AuthServiceService {
 
   private saveAuthData(token:string, expirationDate:Date){
     localStorage.setItem("token",token);
-    localStorage.setItem("expiration",expirationDate.toISOString());
+    localStorage.setItem("expiration",expirationDate.toLocaleString());
     localStorage.setItem("userId",this.userID);
-    console.log(localStorage.getItem("token"));
-    console.log(localStorage.getItem("expiration"))
+    
   }
   
   private clearAuthData(){
@@ -123,7 +123,7 @@ export class AuthServiceService {
     return {token:token,expirationDate:new Date(expirationDate)}
   }
   getUser(){
-    return this.http.get<{user:User}>(this.api+ this.userID);
+    return this.http.get<User>(this.api+ localStorage.getItem("userId"));
   }
 
 

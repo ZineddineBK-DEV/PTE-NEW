@@ -77,38 +77,35 @@ module.exports.signUp = async function (req, res, next) {
 
     const user = await User.create({ ...body });
     const cv = await Cv.create({ user: user._id });
-    const plan = await UserPlan.create({ user: user._id });
+    // const plan = await UserPlan.create({ user: user._id });
 
     
 
-    if (moment().diff(moment(body.hiringDate), "months") >= 6) {
-      const _user = await User.findByIdAndUpdate(user._id, {
-        cv: cv._id,
-        plan :plan.id,
-      });
-      if (_user && cv && plan) {
-        res.status(200).json({
-          message:
-            "Signup request sent succefully , waiting for admin confirmation",
-          user: _user,
-        });
-      }
-    } else {
+    // if (moment().diff(moment(body.hiringDate), "months") >= 6) {
+    //   const _user = await User.findByIdAndUpdate(user._id, {
+    //     cv: cv._id,
+    //     plan :plan.id,
+    //   });
+    //   if (_user && cv && plan) {
+    //     res.status(200).json({
+    //       message:
+    //         "Signup request sent succefully , waiting for admin confirmation",
+    //       user: _user,
+    //     });
+    //   }
+    // } else {
       /** Create a user with career object*/
-      const career = await Career.create({ user: user._id });
       const _user = await User.findByIdAndUpdate(user._id, {
         cv: cv._id,
-        career: career,
-        plan : plan,
       });
-      if (_user && cv && career && plan) {
+      if (_user && cv ) {
         res.status(200).json({
           message:
             "Signup request sent succefully , waiting for admin confirmation",
           user: _user,
         });
       }
-    }
+    // }
   } catch (error) {
     res.status(500).json(error);
   }
@@ -143,7 +140,7 @@ module.exports.login = async function (req, res, next) {
     return res.status(200).json({
       token: token,
       expiresIn: 6000,
-      userName: fetchedUser.fullName,
+      userName: fetchedUser.firstName + fetchedUser.lastName,
       image: fetchedUser.image,
       id: fetchedUser._id,
       roles: fetchedUser.roles,
@@ -328,19 +325,27 @@ module.exports.confirmSignUp = async function (req, res) {
   const user =await  User.findByIdAndUpdate(ID, { isEnabled: true });
   if (user) {
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      service: "outlook",
       port: 587,
       auth: {
-        user: "prologic.simop@gmail.com",
-        pass: "mepdngigwccwxwog",
+        user: "zineddine.boubaker@prologic.com.tn",
+        pass: "amen3wini275@@",
       },
     });
-    transporter.sendMail({
-      from: "prologic.simop@gmail.com",
+    const mailOptions = {
+      from: 'zineddine.boubaker@prologic.com.tn',
       to: user.email,
-      subject: "Prologic -- register request accepted",
-      text: "Your register request is accepted",
+      subject: '"Prologic -- register request accepted',
+      text: 'Your register request is accepted.'
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+      console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
     });
+    console.log("mail sent")
   }
 
   return res.status(200).json({ message: "User accepted" });
@@ -397,7 +402,31 @@ module.exports.deleteUser = async function (req, res) {
           },
         ],
       });
-    }
+     
+        const transporter = nodemailer.createTransport({
+          service: "outlook",
+          port: 587,
+          auth: {
+            user: "zineddine.boubaker@prologic.com.tn",
+            pass: "*",
+          },
+        });
+        const mailOptions = {
+          from: 'zineddine.boubaker@prologic.com.tn',
+          to: user.email,
+          subject: '"Prologic -- register request declined',
+          text: 'Unfortunately your register request is declined.'
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+          console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
+        console.log("mail sent")
+      }
+    
     res.status(200).json({ message: "User deleted succefully" });
   } catch (error) {
     res.status(500).json({ message: error });
@@ -419,13 +448,13 @@ module.exports.getUserById = async function (req, res) {
 };
 
 module.exports.filterUsers = async function (req, res) {
-  var fullNameFilter = req.body.fullName;
+  var nameFilter = req.body.firstName;
   var titleFilter = req.body.title;
   var driversFilter = req.body.drivingLicense;
   var departmentFilter = req.body.department;
   var pathsFilter = req.body.paths;
-  if (fullNameFilter) {
-    fullNameFilter = fullNameFilter.trim().length === 0 ? null : fullNameFilter;
+  if (nameFilter) {
+    nameFilter = nameFilter.trim().length === 0 ? null : nameFilter;
   }
   if (titleFilter) {
     titleFilter = titleFilter.trim().length === 0 ? null : titleFilter;
@@ -463,8 +492,8 @@ module.exports.filterUsers = async function (req, res) {
           {
             $or: [
               {
-                fullName: fullNameFilter
-                  ? new RegExp(fullNameFilter, "i")
+                firstName: nameFilter
+                  ? new RegExp(nameFilter, "i")
                   : new RegExp("[a-zA-Z]"),
               },
               {
@@ -494,14 +523,14 @@ module.exports.filterUsers = async function (req, res) {
 };
 
 module.exports.searchUsers = async function (req, res) {
-  var fullNameFilter = req.body.fullName;
+  var nameFilter = req.body.firstName;
   var addressFilter = req.body.address;
   var titleFilter = req.body.title;
   var departmentFilter = req.body.department;
   var isNotEnabledFilter = req.body.isEnabled;
   var pathsFilter = req.body.paths;
-  if (fullNameFilter) {
-    fullNameFilter = fullNameFilter.trim().length === 0 ? null : fullNameFilter;
+  if (nameFilter) {
+    nameFilter = nameFilter.trim().length === 0 ? null : nameFilter;
   }
   if (titleFilter) {
     titleFilter = titleFilter.trim().length === 0 ? null : titleFilter;
@@ -527,8 +556,8 @@ module.exports.searchUsers = async function (req, res) {
       roles: { $ne: "admin" },
       isEnabled: isNotEnabledFilter ? false : true,
       _id: { $ne: res.locals.user._id },
-      fullName: fullNameFilter
-        ? new RegExp(fullNameFilter, "i")
+      firstName: nameFilter
+        ? new RegExp(nameFilter, "i")
         : new RegExp("[a-zA-Z]"),
 
          title: titleFilter

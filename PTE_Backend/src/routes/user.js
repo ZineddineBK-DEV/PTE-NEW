@@ -12,29 +12,29 @@ const upload = multer({ storage: fileStorageEngine });
 router.post("/signup", upload.single("image"), userCtr.signUp);
 router.post("/adduser",userCtr.AddUser);
 router.get("/signup/requests",userCtr.getSignUpRequests);
-router.post("/confirm-signup/:id", authMiddleware, userCtr.confirmSignUp);
-router.patch("/update/:id",upload.single("image"),authMiddleware,userCtr.UpdateUser );
-router.patch("/update-roles/:id",authMiddleware,checkAdminMiddleware,userCtr.updateUserRoles);
+router.post("/confirm-signup/:id",  userCtr.confirmSignUp);
+router.patch("/update/:id",upload.single("image"),userCtr.UpdateUser );
+router.patch("/update-roles/:id",userCtr.updateUserRoles);
 router.post("/forgotPassword", userCtr.forgotPassword);
-router.post("/checkpass", authMiddleware, userCtr.checkPassword);
-router.post("/addUser",authMiddleware,userCtr.AddUser)
+router.post("/checkpass",  userCtr.checkPassword);
+router.post("/addUser",userCtr.AddUser)
 router.post("/validateCode", userCtr.validateCode);
 router.post("/changePswdAutorisation/:id", userCtr.changePswdAutorisation);
 router.patch("/change-psw/:id", userCtr.changePswd);
 router.get("/getall", userCtr.getAllUsers);
 router.get("/sousTraitant", userCtr.getAllUsers);
-router.post("/filter", authMiddleware, userCtr.filterUsers);
-router.post("/search", authMiddleware, userCtr.searchUsers);
-router.delete("/delete/:id", authMiddleware, userCtr.deleteUser);
+router.post("/filter",  userCtr.filterUsers);
+router.post("/search",  userCtr.searchUsers);
+router.delete("/delete/:id",  userCtr.deleteUser);
 /******************************************* */
 /************ Event Managment ************** */
 /******************************************* */
-router.get("/events", authMiddleware, userEventCtr.getUserEvents);
-router.post("/setevent", authMiddleware, userEventCtr.createEvent );
+router.get("/events",  userEventCtr.getUserEvents);
+router.post("/setevent",  userEventCtr.createEvent );
 // router.get("/Plan", authMiddleware, userPlanCtr.getUserPlans);
-router.patch("/acceptEvent/:id", authMiddleware, userEventCtr.updateEvent);
-router.delete("/deleteEvent/:id", authMiddleware, userEventCtr.deleteEvent);
+router.patch("/acceptEvent/:id",  userEventCtr.updateEvent);
+router.delete("/deleteEvent/:id",  userEventCtr.deleteEvent);
 router.get("/:id",  userCtr.getUserById);
-router.get("/getPlanById/:id", authMiddleware, userPlanCtr.getPlanById);
-router.post("/upload",upload.single("pdf"), authMiddleware,userPlanCtr.uploadPlan);
+router.get("/getPlanById/:id",  userPlanCtr.getPlanById);
+router.post("/upload",upload.single("pdf"), userPlanCtr.uploadPlan);
 module.exports = router;

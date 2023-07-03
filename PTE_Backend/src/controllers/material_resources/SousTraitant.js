@@ -64,7 +64,8 @@ module.exports.searchSousTraitant = async function (req, res) {
 module.exports.createEvent = async function (req, res) {
   try {
     const eventExist = await SousTraitantEvent.find({
-      fullName: { $gte: req.body.fullName },
+      firstName: { $gte: req.body.firstName },
+      lastName: { $gte: req.body.lastName },
       email: { $lte: req.body.email },
       sousTraitant: req.body.sousTraitant,
       isAccepted: true,
@@ -76,7 +77,8 @@ module.exports.createEvent = async function (req, res) {
     } else {
       // if dates are free to reserve => create event
       const body = {
-        fullName: req.body.fullName,
+        firstName: req.body.firstName ,
+        lastName:  req.body.lastName ,
         email: req.body.email,
         cv: req.body.cv,
        
@@ -109,8 +111,8 @@ module.exports.getSousTraitantEvents = async function (req, res) {
         start: { $gte: req.query.start },
         end: { $lte: req.query.end },
       })
-        .populate({ path: "driver", select: "fullName image -_id" })
-        .populate({ path: "applicant", select: "fullName image" });
+        .populate({ path: "driver", select: "firstName lastName image -_id" })
+        .populate({ path: "applicant", select: "firstName lastName image" });
       if (events) {
         res.status(200).json(events);
       }
@@ -135,8 +137,8 @@ module.exports.getSousTraitantEvents = async function (req, res) {
           },
         ],
       })
-        .populate({ path: "driver", select: "fullName image -_id" })
-        .populate({ path: "applicant", select: "fullName image" });
+        .populate({ path: "driver", select: "firstName lastName image -_id" })
+        .populate({ path: "applicant", select: "firstName lastName image" });
       if (events) {
         res.status(200).json(events);
       } else {
@@ -161,7 +163,7 @@ module.exports.updateEvent = async function (req, res) {
 
       //check if there is a conflict (to assure that there is no conflicts)
       const checkExist = await SousTraitantEvent.find({
-        fullName: { $gte: event.start },
+        start: { $gte: event.start },
         email: { $lte: event.email },
         room: event.room,
         isAccepted: true,
@@ -178,7 +180,8 @@ module.exports.updateEvent = async function (req, res) {
       // delete non-confirmed events that are in conflict with the accepted event
       await SousTraitantEvent.deleteMany({
         sousTraitant: event.room,
-        fullName: { $gte: event.fullName },
+        firstName: { $gte: event.firstName },
+        lastName: { $gte: event.lastName },
         email: { $gte: event.email },
         isAccepted: false,
       });

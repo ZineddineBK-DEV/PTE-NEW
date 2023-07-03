@@ -5,26 +5,16 @@ const { authMiddleware } = require("../../middlewares/authMiddleware");
 const {
   checkAdminMiddleware,
 } = require("../../middlewares/checkAdminMiddleware");
-router.get("/getVehicles", authMiddleware, vehicleCtr.getAllVehicles);
-router.post(
-  "/addVehicle",
-  authMiddleware,
-  checkAdminMiddleware,
-  vehicleCtr.addVehicle
-);
+router.get("/getVehicles",  vehicleCtr.getAllVehicles);
+router.post("/addVehicle",vehicleCtr.addVehicle);
 
-router.delete(
-  "/deleteVehicle/:id",
-  authMiddleware,
-  checkAdminMiddleware,
-  vehicleCtr.deleteVehicle
-);
+router.delete("/deleteVehicle/:id",vehicleCtr.deleteVehicle);
 
-router.get("/search", authMiddleware, vehicleCtr.searchVehicle);
+router.get("/search",  vehicleCtr.searchVehicle);
 /**Events Managment ********/
-router.get("/events", authMiddleware, vehicleCtr.getVehicleEvents);
-router.post("/setevent", authMiddleware, vehicleCtr.createEvent);
-router.patch("/acceptEvent/:id", authMiddleware, vehicleCtr.updateEvent);
-router.delete("/deleteEvent/:id", authMiddleware, vehicleCtr.deleteEvent);
+router.get("/events",  vehicleCtr.getVehicleEvents);
+router.post("/setevent",  vehicleCtr.createEvent);
+router.patch("/acceptEvent/:id",  vehicleCtr.updateEvent);
+router.delete("/deleteEvent/:id",  vehicleCtr.deleteEvent);
 
 module.exports = router;

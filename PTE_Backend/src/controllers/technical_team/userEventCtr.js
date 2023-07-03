@@ -80,7 +80,7 @@ module.exports.getUserEvents = async function (req, res) {
         engineer: ID,
         start: { $gte: req.query.start },
         end: { $lte: req.query.end },
-      }).populate({ path: "applicant", select: "fullName image" });
+      }).populate({ path: "applicant", select: "firstName lastName image" });
 
       if (events) {
         res.status(200).json(events);
@@ -111,7 +111,7 @@ module.exports.getUserEvents = async function (req, res) {
             ],
           },
         ],
-      }).populate({ path: "applicant", select: "fullName image" });
+      }).populate({ path: "applicant", select: "firstName lastName image" });
 
       if (events) {
         res.status(200).json(events);
